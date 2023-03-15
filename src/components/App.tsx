@@ -1,6 +1,6 @@
 import React from "react";
-import InputTask from "./components/inputtask";
-import ListTask from "./components/listtask";
+import InputTask from "./inputtask";
+import ListTask from "./listtask";
 
 function App() {
   return (
