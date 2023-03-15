@@ -68,7 +68,6 @@ class InputTask extends React.Component <{inputTask:any}>{
 
 const mapStateToProps = (state:any) => ({
   tasks: state.tasks.tasks,
-  total: state.tasks.total,
 });
 
 const mapDispatchToProps = { inputTask };

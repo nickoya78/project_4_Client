@@ -3,12 +3,10 @@ import  axios  from "axios";
 
 type  taskType = {
   tasks: string [],
-  total: number
 }
 
 const initialState: taskType = { 
   tasks: [],
-  total: 0,
 }
 
 export const getTasks = createAsyncThunk("tasks/getTasks", async (thunkAPI) => {
@@ -117,8 +115,5 @@ export const taskSlice = createSlice({
     })
   }
 });
-
-// Action creators are generated for each case reducer function
-// export const { getTasks, deleteTask, inputTask } = taskSlice.actions;
 
 export default taskSlice.reducer;

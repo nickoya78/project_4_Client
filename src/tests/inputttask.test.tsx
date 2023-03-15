@@ -1,5 +1,5 @@
 import  InputTask from '../components/inputtask'
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from 'react'
 
 
@@ -10,7 +10,10 @@ jest.mock('react-redux', () => ({
 
 
 describe("Inputtask component tests", ()=> {
-  render(<InputTask />)
+  beforeEach(()=> { 
+    render(<InputTask/>)
+  })
+
   
 it("should include add task button", ()=> {
     const taskButton = screen.getByRole('button', {
@@ -19,15 +22,28 @@ it("should include add task button", ()=> {
      expect(taskButton).toBeInTheDocument()
 })
 
-it('should only input text ', ()=>{
-      const yourTask =  screen.findByRole('textbox')
-      expect(yourTask).toBeTruthy()
+it('should only allow input text ', async()=>{
+      const yourTask = await  screen.findByRole('textbox')
+      expect(yourTask).toBeInTheDocument()
     }) 
  
-
-    it("should  render input element",  ()=>{
-      const inputElement = screen.findByPlaceholderText(/Your Task/i)
-      expect(inputElement).toBeTruthy()
+it('should include image ', ()=>{
+      const imageHard = screen.getByRole('img', {
+        name: /hard/i
+      })
+      expect(imageHard).toBeInTheDocument()
+    }) 
+it('should include second image ', ()=>{
+      const imageWorking = screen.getByRole('img', {
+        name: /working/i
+      })
+      expect(imageWorking).toBeInTheDocument()
+    }) 
+ 
+it("should  render input element",  async()=>{
+      const inputElement = await screen.findByPlaceholderText(/Your Task/i)
+      expect(inputElement).toBeInTheDocument()
     })
+    
 })
 

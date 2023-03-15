@@ -11,9 +11,9 @@ interface Props {
   tasks:any
 }
 
+
 class ListTask extends React.Component<Props>{
  
-
 componentDidMount = () => {
  const getTasks = () => this.props.getTasks()
  return this.props.getTasks&&getTasks()
@@ -58,7 +58,6 @@ componentDidMount = () => {
 
 const mapStateToProps = (state:any) => ({
   tasks: state.tasks.tasks,
-  total: state.tasks.total,
 });
 
 const mapDispatchToProps =  { getTasks, deleteTask }

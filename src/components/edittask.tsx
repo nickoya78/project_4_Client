@@ -3,8 +3,13 @@ import { connect } from "react-redux";
 import { editTask } from "../slices/taskSlice";
 
 
+interface Props {
+  editTask: any;
+  task:any
+}
 
-class EditTask extends React.Component <{task: any; editTask:any}>{
+
+class EditTask extends React.Component <Props>{
 
   state = {
     task_id: "",
@@ -73,6 +78,7 @@ class EditTask extends React.Component <{task: any; editTask:any}>{
               <div className="modal-body">
                 <input
                   className="form-control"
+                  placeholder="Enter a new task"
                   name="task"
                   value={this.state.task_name}
                   onChange={(e) => this.handleChange(e)}
@@ -107,11 +113,10 @@ class EditTask extends React.Component <{task: any; editTask:any}>{
 
 const mapStateToProps = (state:any) => ({
   tasks: state.tasks.tasks,
-  total: state.tasks.total,
 });
 
 const mapDispatchToProps = { editTask };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditTask);
 
-// export default EditTask;
+

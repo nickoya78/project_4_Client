@@ -8,21 +8,38 @@ jest.mock('react-redux', () => ({
  }));
 
  describe("ListTask component tests", ()=> {
-   render(<ListTask />)
+  beforeEach(()=> { 
+    render(<ListTask/>) 
+  })
 
    it("should have task header included", ()=> {
-    const task = screen.getByRole('columnheader', {
-      name: /task/i
+    const newTask = screen.getByRole('columnheader', {
+      name: /TASK/i
     })
-     expect(task).toBeInTheDocument()
+     expect(newTask).toBeInTheDocument()
 })
+
+it("should have update header included", async()=> {
+  const updateTask = await screen.findByRole('columnheader', {
+    name: /Update/i
+  })
+   expect(updateTask).toBeInTheDocument()
+ })
+it("should have delete header included", async()=> {
+  const deleteTask = await screen.findByRole('columnheader', {
+    name: /Delete/i
+  })
+   expect(deleteTask).toBeInTheDocument()
  })
 
-it("should have update header included", ()=> {
- const update = screen.findByRole('columnheader', {
-   name: /update/i
- })
-  expect(update).toBeTruthy()
+
+it('should delete task when delete button is clicked', async () => {
+  const mockFunction = jest.fn();
+  const deleteButton = await screen.findByText('Delete');
+  deleteButton.onclick = mockFunction;
+  fireEvent.click(deleteButton);
+  expect(mockFunction).toHaveBeenCalledTimes(1);
+});
 
 })
 
