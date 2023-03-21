@@ -13,7 +13,7 @@ const initialState: taskType = {
 
 export const getTasks = createAsyncThunk("tasks/getTasks", async (thunkAPI) => {
   try {
-    const res = await axios.get(`http://localhost:8888/.netlify/functions/api/db`);
+    const res = await axios.get(`http://localhost:8888/.netlify/functions/api`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -26,7 +26,7 @@ export const deleteTask = createAsyncThunk(
     
     const id = data.id
     try {
-      await axios.delete(`http://localhost:8888/.netlify/functions/api/db/${id}`);
+      await axios.delete(`http://localhost:8888/.netlify/functions/api/${id}`);
       return id;
     } catch (err) {
       console.log(err);
@@ -41,7 +41,7 @@ export const inputTask = createAsyncThunk(
     const task = data.task;
 
     try {
-      const res = await axios.post(`http://localhost:8888/.netlify/functions/api/db`, {
+      const res = await axios.post(`http://localhost:8888/.netlify/functions/api`, {
         name: task,
       });
       return res.data;
@@ -56,7 +56,7 @@ export const editTask = createAsyncThunk(
     const  task  = data.task
     const id = data.id;
     try {
-      const res = await axios.put(`http://localhost:8888/.netlify/functions/api/db/${id}`, {
+      const res = await axios.put(`http://localhost:8888/.netlify/functions/api/${id}`, {
         name: task,
       });
       return res.data;
