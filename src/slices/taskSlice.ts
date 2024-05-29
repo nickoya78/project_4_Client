@@ -75,11 +75,15 @@ export const taskSlice = createSlice({
       builder.addCase(getTasks.rejected, (state) => {
         state.tasks = [];
       })
-      builder.addCase(deleteTask.pending, (state) => { })
+      builder.addCase(deleteTask.pending, (state) => {
+        state.tasks = [];
+       })
       builder.addCase(deleteTask.fulfilled, (state, action) => {
         state.tasks = state.tasks.filter((task: any) => task !== action.payload);
       })
-      builder.addCase(deleteTask.rejected, (state) => { })
+      builder.addCase(deleteTask.rejected, (state) => { 
+        state.tasks = [];
+      })
       builder.addCase(inputTask.pending, (state) => {
         state.tasks = [];
       })
