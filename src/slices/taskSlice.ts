@@ -36,7 +36,7 @@ export const inputTask = createAsyncThunk(
   "tasks/inputTask",
   async (data: { task: string }, thunkAPI) => {
     try {
-      const res = await axios.post(`${baseUrl}/.netlify/functions/api`, {
+      await axios.post(`${baseUrl}/.netlify/functions/api`, {
         name: data.task,
       });
       return data.task;
@@ -50,7 +50,7 @@ export const editTask = createAsyncThunk(
   "tasks/editTask",
   async (data: { task: string, id: number }, thunkAPI) => {
     try {
-      const res = await axios.put(`${baseUrl}/.netlify/functions/api/${data.id}`, {
+       await axios.put(`${baseUrl}/.netlify/functions/api/${data.id}`, {
         name: data.task,
       });
       return { task: data.task, id: data.id };
